@@ -1,0 +1,177 @@
+---
+title: "Homework-1"
+author: "Omikumar Makadia"
+date: "9/14/2024"
+output:
+  html_document:
+    toc: yes
+    toc_depth: '4'
+    df_print: paged
+    css: style.css
+    keep_md: yes
+  pdf_document:
+    number_sections: yes
+    toc: yes
+    toc_depth: 4
+    citation_package: natbib
+    fig_caption: yes
+fontsize: 12pt
+biblio-style: chicago
+bibliography: lab.bib
+---
+
+<!-- \cleardoublepage -->
+\pagenumbering{arabic}
+
+
+# Quetion - 1
+
+
+```{r}
+library(faraway)
+#Loading the faraway package
+
+library(ggplot2)
+
+
+data("teengamb")
+#Loadig the dataset from the package 
+
+head(teengamb)
+#Generating the dataset
+
+summary(teengamb)
+#Doing the numerical summary of the dataset
+
+#The sex is given as the catagorical variable
+teengamb$sex <- factor(teengamb$sex, levels = c(0, 1), labels = c("male", "female"))
+
+#Feature I found Interesting was "status" which can be helpful to analyze how status influeces gambling
+
+#Graphical summary of the data
+plot(gamble~status, teengamb)
+plot(gamble~income, teengamb)
+plot(gamble~verbal, teengamb)
+plot(gamble~sex, teengamb)
+
+#We can also use the numarical summary in the relation with sex to get the better understanding of the trend
+by(teengamb, teengamb$sex, summary)
+pairs(teengamb)
+
+```
+
+# Quetion - 2
+
+```{r}
+
+#Quetion-2
+
+library(faraway)
+#Loading the faraway package
+
+data("prostate")
+#Loadig the dataset from the package 
+
+head(prostate)
+#Generating the dataset
+
+summary(prostate)
+#Doing the numerical summary of the dataset
+
+#Interseting feature 
+#There is a feature of "psa" which stands for protein produced by normal and malignant cells of the prostate gland
+
+#Graphical summary of the data
+
+plot(age~svi, prostate)
+plot(lweight~svi, prostate)
+plot(lcavol~age, prostate)
+
+
+#We can also use the numarical summary in the relation with svi(seminal vesicle invasion) to get the better understanding of the trend
+by(prostate, prostate$svi, summary)
+pairs(prostate) 
+
+
+```
+Appendix: All code for this report
+
+```{r ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+# Regression & Time Series Analysis
+#Omikumar Makadia
+#om232@scarletmail.rutgers.edu
+
+#Homework1
+
+#Quetion-1
+
+library(faraway)
+#Loading the faraway package
+
+library(ggplot2)
+
+
+data("teengamb")
+#Loadig the dataset from the package 
+
+head(teengamb)
+#Generating the dataset
+
+summary(teengamb)
+#Doing the numerical summary of the dataset
+
+#The sex is given as the catagorical variable
+teengamb$sex <- factor(teengamb$sex, levels = c(0, 1), labels = c("male", "female"))
+
+#Feature I found Interesting was "status" which can be helpful to analyze how status influeces gambling
+
+#Graphical summary of the data
+plot(gamble~status, teengamb)
+plot(gamble~income, teengamb)
+plot(gamble~verbal, teengamb)
+plot(gamble~sex, teengamb)
+
+#We can also use the numarical summary in the relation with sex to get the better understanding of the trend
+by(teengamb, teengamb$sex, summary)
+pairs(teengamb)
+
+####################################################################################
+
+
+#Quetion-2
+
+library(faraway)
+#Loading the faraway package
+
+data("prostate")
+#Loadig the dataset from the package 
+
+head(prostate)
+#Generating the dataset
+
+summary(prostate)
+#Doing the numerical summary of the dataset
+
+#Interseting feature 
+#There is a feature of "psa" which stands for protein produced by normal and malignant cells of the prostate gland
+
+#Graphical summary of the data
+
+plot(age~svi, prostate)
+plot(lweight~svi, prostate)
+plot(lcavol~age, prostate)
+
+
+#We can also use the numarical summary in the relation with svi(seminal vesicle invasion) to get the better understanding of the trend
+by(prostate, prostate$svi, summary)
+pairs(prostate) 
+
+
+####################################################################################
+
+```
+
+# References
+https://github.com/nathancday/faraway
+
+
